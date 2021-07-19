@@ -1,6 +1,7 @@
-import '../styles/globals.css'
 import type {AppProps} from 'next/app'
-import theme from "./theme";
+
+import '../styles/globals.css'
+import theme from '../theme'
 
 // See https://chakra-ui.com/
 import {ChakraProvider} from "@chakra-ui/react"
