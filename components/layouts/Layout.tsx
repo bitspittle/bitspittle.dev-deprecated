@@ -1,8 +1,11 @@
 import * as React from "react"
 import Head from "next/head";
-import {Box, useColorMode} from "@chakra-ui/react";
-import styles from "/styles/layouts/Layout.module.css"
+import {Box, Flex, useColorMode} from "@chakra-ui/react";
 import theme from "../../theme"
+import {NavHeader} from "../sections/NavHeader";
+import {Footer} from "../sections/Footer";
+
+import styles from "/styles/layouts/Layout.module.css"
 
 export interface LayoutProps {
     /** The title of this page */
@@ -37,13 +40,18 @@ const Layout: React.FunctionComponent<LayoutProps> =
                     backgroundColor={colorMode === "light" ? theme.colors.brand.light.bg : theme.colors.brand.dark.bg}
                     color={colorMode === "light" ? theme.colors.brand.light.fg : theme.colors.brand.dark.fg}
                 >
-                    <div className={styles.container}>
-                        {!fullscreen && <div>TODO HEADER</div>}
-                        <main className={styles.main}>
+                    <Flex
+                        as="div"
+                        direction="column"
+                        minHeight="100vh"
+                    >
+                        {!fullscreen && <NavHeader />}
+                        <Box as="main" flexGrow={1} className={styles.main}>
                             {children}
-                        </main>
-                        {!fullscreen && <div>TODO FOOTER</div>}
-                    </div>
+                        </Box>
+                        {!fullscreen && <Footer />}
+                    </Flex>
+
                 </Box>
             </>
         )
