@@ -1,13 +1,18 @@
-import {Box, HStack, StackProps} from "@chakra-ui/react";
+import {Box, Center, Container, HStack, StackProps} from "@chakra-ui/react";
 import styles from "/styles/sections/Footer.module.css"
+import {FaGithub} from "react-icons/fa";
+import React from "react";
 
 export const Footer: React.FunctionComponent<StackProps> = ({...props}) => {
     return (
-        <HStack as="footer" className={styles.footer} {...props}>
-            <Box>1</Box>
-            <Box>2</Box>
-            <Box>3</Box>
-        </HStack>
+        <>
+            <Container as="footer" className={styles.footer} textAlign="center">
+                This site is <a href="https://github.com/bitspittle/bitspittle.dev">Open Source</a>.
+                It is built using <a href="https://nextjs.org/">Next.js</a> and{' '}
+                <a href="https://chakra-ui.com/">Chakra UI</a>.
+            </Container>
+        </>
+
     )
 }
 
