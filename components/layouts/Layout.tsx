@@ -36,6 +36,8 @@ const Layout: React.FunctionComponent<LayoutProps> =
                 <Flex
                     backgroundColor={getBrandColors(colorMode).bg}
                     color={getBrandColors(colorMode).fg}
+                    transitionProperty="background-color, color"
+                    transitionDuration="normal"
                     justifyContent="center"
                 >
                     <Flex
