@@ -11,7 +11,6 @@ export const Footer: React.FunctionComponent<StackProps> = ({...props}) => {
             <Container
                 as="footer"
                 padding="0.5em"
-                minWidth="100vw"
                 borderTopWidth="1px"
                 borderTopStyle="solid"
                 borderTopColor={getBrandColors(colorMode).border}

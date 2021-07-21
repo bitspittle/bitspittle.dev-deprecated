@@ -1,7 +1,7 @@
 import * as React from "react"
 import Head from "next/head";
 import {Box, ChakraProps, Flex, useColorMode} from "@chakra-ui/react";
-import theme, {getBrandColors} from "../../theme/colors"
+import {getBrandColors} from "../../theme/colors"
 import {NavHeader} from "../sections/NavHeader";
 import {Footer} from "../sections/Footer";
 
@@ -33,16 +33,17 @@ const Layout: React.FunctionComponent<LayoutProps> =
                     <title>{title}</title>
                     <meta name="description" content={description}/>
                 </Head>
-                <Box
+                <Flex
                     backgroundColor={getBrandColors(colorMode).bg}
                     color={getBrandColors(colorMode).fg}
+                    justifyContent="center"
                 >
                     <Flex
                         as="div"
                         direction="column"
                         minHeight="100vh"
-                        minWidth="100vw"
-                        width="100vw"
+                        minWidth="70vw"
+                        width="70vw"
                         alignItems="stretch"
                     >
                         {!fullscreen && <NavHeader />}
@@ -56,7 +57,7 @@ const Layout: React.FunctionComponent<LayoutProps> =
                         {!fullscreen && <Footer />}
                     </Flex>
 
-                </Box>
+                </Flex>
             </>
         )
     }
