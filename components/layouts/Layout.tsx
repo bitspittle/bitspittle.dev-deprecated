@@ -8,13 +8,11 @@ import {Footer} from "../sections/Footer";
 export interface LayoutProps extends ChakraProps {
     /** The title of this page */
     title: string,
-    /** An optional description of this page. If not present, a generic description will be used. */
-    description?: string,
+    /** An description of this page. */
+    description: string,
     /** An optional setting which, if set to false (the default), means a nav header and footer will be shown. */
     fullscreen?: boolean,
 }
-
-const DefaultDescription: string = "A developer blog with tutorials and experiences from the industry"
 
 /**
  * The main layout, which stretches the full screen, sets up shared configuration, and applies branded colors.
@@ -22,7 +20,7 @@ const DefaultDescription: string = "A developer blog with tutorials and experien
 const Layout: React.FunctionComponent<LayoutProps> =
     ({
          title,
-         description = DefaultDescription,
+         description,
          fullscreen = false,
          children,
          ...props
@@ -33,7 +31,7 @@ const Layout: React.FunctionComponent<LayoutProps> =
                 <Head>
                     <link rel="icon" href="/favicon.ico"/>
                     <title>{title}</title>
-                    {description && <meta name="description" content={description}/>}
+                    <meta name="description" content={description}/>
                 </Head>
                 <Box
                     backgroundColor={getBrandColors(colorMode).bg}
@@ -62,15 +60,5 @@ const Layout: React.FunctionComponent<LayoutProps> =
             </>
         )
     }
-/*
-.main {
-  padding: 1rem 0;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
- */
 
 export default Layout
