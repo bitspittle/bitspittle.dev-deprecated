@@ -7,10 +7,10 @@ export const NavHeader: React.FunctionComponent<StackProps> = ({...props}) => {
     return (
         <Flex
             as="header"
-            padding="0.5em"
+            padding="1.5em"
             {...props}
         >
-            <HStack as="nav">
+            <HStack as="nav" spacing={4}>
                 <NavLink href="/">$bs</NavLink>
                 <NavLink href="/about">About</NavLink>
                 <NavLink href="/posts">Posts</NavLink>
