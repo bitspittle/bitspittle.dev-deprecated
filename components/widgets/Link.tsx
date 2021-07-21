@@ -1,14 +1,24 @@
 import React from 'react'
+import NextLink from 'next/link'
 import {Link as ChakraLink, LinkProps, useColorMode} from '@chakra-ui/react'
-import {getBrandColors} from "../../theme/colors";
 
-/** Our own link which changes color based on the color mode */
-export const Link: React.FunctionComponent<LinkProps> = ({...props}) => {
-    const {colorMode} = useColorMode()
+/**
+ * Our own Link class which encapsulates both Next.js AND Chakra UI
+ * functionality.
+ *
+ * Next.js gives us client side navigation, which is much snappier, while
+ * Chakra gives us the ability to style things dynamically.
+ *
+ * See also: {@link ThemedLink}.
+ */
+export const Link: React.FunctionComponent<LinkProps> = (
+    {
+        href,
+        ...props}
+) => {
     return (
-        <ChakraLink
-            color={getBrandColors(colorMode).link}
-            {...props}
-        />
+        <NextLink href={href ?? "/"}>
+            <ChakraLink {...props} />
+        </NextLink>
     )
 }

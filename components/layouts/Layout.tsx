@@ -7,7 +7,7 @@ import {Footer} from "../sections/Footer";
 
 export interface LayoutProps extends ChakraProps {
     /** The title of this page */
-    title: string,
+    title?: string,
     /** An description of this page. */
     description: string,
     /** An optional setting which, if set to false (the default), means a nav header and footer will be shown. */
@@ -26,11 +26,12 @@ const Layout: React.FunctionComponent<LayoutProps> =
          ...props
      }) => {
         const {colorMode} = useColorMode()
+        const fullTitle = title ? title + " - Bitspittle.dev" : "Bitspittle.dev"
         return (
             <>
                 <Head>
                     <link rel="icon" href="/favicon.ico"/>
-                    <title>{title}</title>
+                    <title>{fullTitle}</title>
                     <meta name="description" content={description}/>
                 </Head>
                 <Flex
@@ -38,7 +39,8 @@ const Layout: React.FunctionComponent<LayoutProps> =
                     color={getBrandColors(colorMode).fg}
                     transitionProperty="background-color, color"
                     transitionDuration="normal"
-                    justifyContent="center"
+                    flexDirection="column"
+                    alignItems="center"
                 >
                     <Flex
                         as="div"
@@ -52,6 +54,10 @@ const Layout: React.FunctionComponent<LayoutProps> =
                         <Box
                             as="main"
                             flexGrow={1}
+                            padding="1rem 0"
+                            display="flex"
+                            flexDirection="column"
+                            alignItems="center"
                             {...props}
                         >
                             {children}
