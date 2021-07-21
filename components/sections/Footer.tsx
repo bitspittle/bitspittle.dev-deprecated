@@ -1,88 +1,28 @@
-import {Box, Center, Container, HStack, StackProps} from "@chakra-ui/react";
-import styles from "/styles/sections/Footer.module.css"
-import {FaGithub} from "react-icons/fa";
+import {Container, StackProps, useColorMode} from "@chakra-ui/react";
 import React from "react";
+import {getBrandColors} from "../../theme/colors";
+import {Link} from "../widgets/Link";
 
 export const Footer: React.FunctionComponent<StackProps> = ({...props}) => {
+    const {colorMode} = useColorMode()
+
     return (
         <>
-            <Container as="footer" className={styles.footer} textAlign="center">
-                This site is <a href="https://github.com/bitspittle/bitspittle.dev">Open Source</a>.
-                It is built using <a href="https://nextjs.org/">Next.js</a> and{' '}
-                <a href="https://chakra-ui.com/">Chakra UI</a>.
+            <Container
+                as="footer"
+                padding="0.5em"
+                minWidth="100vw"
+                borderTopWidth="1px"
+                borderTopStyle="solid"
+                borderTopColor={getBrandColors(colorMode).border}
+                textAlign="center"
+                {...props}
+            >
+                This site is <Link href="https://github.com/bitspittle/bitspittle.dev">Open Source</Link>.
+                It is built using <Link href="https://nextjs.org/">Next.js</Link> and{' '}
+                <Link href="https://chakra-ui.com/">Chakra UI</Link>.
             </Container>
         </>
 
     )
 }
-
-/*
-export const NavHeader: React.FC<NavHeaderProps> = ({ ...props }) => {
-  return (
-    <Flex
-      as="header"
-      alignItems="center"
-      gridRowGap={1}
-      flexWrap="wrap"
-      {...props}
-    >
-      <HStack as="nav" spacing={[4, 6]} alignItems="center">
-        <RouteLink to="/" rounded="full">
-          <Logo w={8} h={8} aria-label="François Best" />
-        </RouteLink>
-        <NavLink to="/" {...navLinkProps} shouldBeActive={navLinkMatch.exact}>
-          About
-        </NavLink>
-        <NavLink to="/open-source" {...navLinkProps}>
-          Open Source
-        </NavLink>
-        <NavLink to="/posts" {...navLinkProps}>
-          Blog
-        </NavLink>
-      </HStack>
-      <HStack as="aside" ml="auto" spacing={0}>
-        <IconButtonOutgoingLink
-          icon={<FiTwitter />}
-          aria-label="Follow me on Twitter"
-          href="https://twitter.com/fortysevenfx"
-          variant="ghost"
-          isRound
-        />
-        <AccentPicker
-          aria-label="Accent Color Picker"
-          variant="ghost"
-          zIndex={1} // Allow the outline to display over siblings
-        />
-        <ColorModeSwitch variant="ghost" />
-      </HStack>
-    </Flex>
-  )
-}
- */
-
-
-/*
-export var todo = "TODO"
-// Should show "$bs About Posts                social | dark mode
-//                                             ^ clubhouse | twitter | linkedin | reddit
-
-const Header: React.FunctionComponent<LayoutProps> = () => {
-    return (
-        <>
-            <Box
-                backgroundColor={colorMode === "light" ? theme.colors.brand.light.bg : theme.colors.brand.dark.bg}
-                color={colorMode === "light" ? theme.colors.brand.light.fg : theme.colors.brand.dark.fg}
-            >
-                <div className={styles.container}>
-                    {!fullscreen && <div>TODO HEADER</div>}
-                    <main className={styles.main}>
-                        {children}
-                    </main>
-                    {!fullscreen && <div>TODO FOOTER</div>}
-                </div>
-            </Box>
-        </>
-    )
-}
-
-export default Layout*/

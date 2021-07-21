@@ -2,13 +2,11 @@ import {Box, Flex, HStack, Spacer, StackProps} from "@chakra-ui/react";
 import {LightModeToggle} from "../widgets/LightModeToggle";
 import React from "react";
 
-import styles from "/styles/sections/NavHeader.module.css"
-
 export const NavHeader: React.FunctionComponent<StackProps> = ({ ...props}) => {
     return (
         <Flex
             as="header"
-            className={styles.header}
+            padding="0.5em"
             {...props}
         >
             <HStack as="nav">

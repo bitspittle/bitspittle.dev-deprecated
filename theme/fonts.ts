@@ -1,7 +1,7 @@
 const fonts: any = {
     heading: "Ubuntu",
     body: "Ubuntu",
-    pre: "Ubuntu Mono"
+    mono: "Ubuntu Mono"
 }
 
 export default fonts

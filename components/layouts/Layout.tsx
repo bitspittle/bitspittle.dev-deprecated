@@ -1,13 +1,11 @@
 import * as React from "react"
 import Head from "next/head";
-import {Box, Flex, useColorMode} from "@chakra-ui/react";
-import theme from "../../theme"
+import {Box, ChakraProps, Flex, useColorMode} from "@chakra-ui/react";
+import theme, {getBrandColors} from "../../theme/colors"
 import {NavHeader} from "../sections/NavHeader";
 import {Footer} from "../sections/Footer";
 
-import styles from "/styles/layouts/Layout.module.css"
-
-export interface LayoutProps {
+export interface LayoutProps extends ChakraProps {
     /** The title of this page */
     title: string,
     /** An optional description of this page. If not present, a generic description will be used. */
@@ -27,6 +25,7 @@ const Layout: React.FunctionComponent<LayoutProps> =
          description = DefaultDescription,
          fullscreen = false,
          children,
+         ...props
      }) => {
         const {colorMode} = useColorMode()
         return (
@@ -37,16 +36,23 @@ const Layout: React.FunctionComponent<LayoutProps> =
                     {description && <meta name="description" content={description}/>}
                 </Head>
                 <Box
-                    backgroundColor={colorMode === "light" ? theme.colors.brand.light.bg : theme.colors.brand.dark.bg}
-                    color={colorMode === "light" ? theme.colors.brand.light.fg : theme.colors.brand.dark.fg}
+                    backgroundColor={getBrandColors(colorMode).bg}
+                    color={getBrandColors(colorMode).fg}
                 >
                     <Flex
                         as="div"
                         direction="column"
                         minHeight="100vh"
+                        minWidth="100vw"
+                        width="100vw"
+                        alignItems="stretch"
                     >
                         {!fullscreen && <NavHeader />}
-                        <Box as="main" flexGrow={1} className={styles.main}>
+                        <Box
+                            as="main"
+                            flexGrow={1}
+                            {...props}
+                        >
                             {children}
                         </Box>
                         {!fullscreen && <Footer />}
@@ -56,5 +62,15 @@ const Layout: React.FunctionComponent<LayoutProps> =
             </>
         )
     }
+/*
+.main {
+  padding: 1rem 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+ */
 
 export default Layout
