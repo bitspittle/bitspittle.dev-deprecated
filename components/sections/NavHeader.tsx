@@ -1,8 +1,9 @@
-import {Box, Flex, HStack, Spacer, StackProps} from "@chakra-ui/react";
+import {Flex, HStack, Spacer, StackProps} from "@chakra-ui/react";
 import {LightModeToggle} from "../widgets/LightModeToggle";
 import React from "react";
+import {NavLink} from "../widgets/NavLink";
 
-export const NavHeader: React.FunctionComponent<StackProps> = ({ ...props}) => {
+export const NavHeader: React.FunctionComponent<StackProps> = ({...props}) => {
     return (
         <Flex
             as="header"
@@ -10,14 +11,12 @@ export const NavHeader: React.FunctionComponent<StackProps> = ({ ...props}) => {
             {...props}
         >
             <HStack as="nav">
-                <Box>1</Box>
-                <Box>2</Box>
-                <Box>3</Box>
+                <NavLink href="/">$bs</NavLink>
+                <NavLink href="/about">About</NavLink>
+                <NavLink href="/posts">Posts</NavLink>
             </HStack>
-            <Spacer />
+            <Spacer/>
             <HStack as="aside">
-                <Box>1</Box>
-                <Box>2</Box>
                 <LightModeToggle/>
             </HStack>
         </Flex>
