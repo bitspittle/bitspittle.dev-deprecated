@@ -1,18 +1,19 @@
 import Layout from "../components/layouts/Layout";
-import {Heading} from "@chakra-ui/react";
-import {ThemedCode as Code} from "../components/widgets/ThemedCode";
-import {ThemedLink as Link} from "../components/widgets/ThemedLink";
+import {H1, H2, H3} from "../components/widgets/Headings";
 
 export default function Home() {
     return (
         <Layout
             description="A developer blog with tutorials and experiences from the industry"
+            textAlign="center"
         >
-            <Heading>
-                Welcome to <Link href="https://nextjs.org">Next.js!</Link>
-            </Heading>
-            <br />
-            <Code>This is a mono test</Code>
+            <H1>
+                Bit Spittle
+            </H1>
+            <br/>
+            <H3>
+            Developer tutorials, blog posts, and other garbage
+            </H3>
         </Layout>
     )
 }
