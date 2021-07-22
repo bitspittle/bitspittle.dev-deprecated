@@ -1,6 +1,6 @@
 import React from 'react'
 import NextLink from 'next/link'
-import {Link as ChakraLink, LinkProps, useColorMode} from '@chakra-ui/react'
+import {Link as ChakraLink, LinkProps} from '@chakra-ui/react'
 
 /**
  * Our own Link class which encapsulates both Next.js AND Chakra UI

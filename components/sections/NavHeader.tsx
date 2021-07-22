@@ -1,7 +1,7 @@
 import {Flex, HStack, Spacer, StackProps} from "@chakra-ui/react";
 import {LightModeToggle} from "../widgets/LightModeToggle";
 import React from "react";
-import {Link} from "../widgets/Link";
+import {Link} from "../elements/Link";
 
 export const NavHeader: React.FunctionComponent<StackProps> = ({...props}) => {
     return (

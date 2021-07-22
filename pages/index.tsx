@@ -1,5 +1,5 @@
 import Layout from "../components/layouts/Layout";
-import {H1, H2, H3} from "../components/widgets/Headings";
+import {H1, H2, H3} from "../components/elements/Headings";
 
 export default function Home() {
     return (
