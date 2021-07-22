@@ -1,15 +1,10 @@
 import Layout from "../components/layouts/Layout";
 import {H1, H3} from "../components/elements/Headings";
-import Canvas, {DrawArgs} from "../components/elements/Canvas";
+import Canvas, {ONE_FRAME_MS_60_FPS, RenderArgs} from "../components/elements/Canvas";
 import {getBrandColors} from "../theme/colors";
 import {Spacer} from "@chakra-ui/react";
 
-let lastRenderedTimestamp = 0
-function draw(args: DrawArgs): void {
-    const now = Date.now() / 1000
-    if (lastRenderedTimestamp == now) return
-    lastRenderedTimestamp = now
-
+function render(args: RenderArgs): void {
     // Adapted from: https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Basic_animations#an_animated_clock
     let i;
     const date = new Date();
@@ -103,8 +98,6 @@ function draw(args: DrawArgs): void {
     ctx.stroke();
 
     ctx.restore();
-
-    args.requestUpdate()
 }
 
 export default function Home() {
@@ -121,7 +114,7 @@ export default function Home() {
                 Developer tutorials, blog posts, and other garbage
             </H3>
             <Spacer />
-            <Canvas width={400} height={400} draw={draw}/>
+            <Canvas width={400} height={400} minDeltaMs={ONE_FRAME_MS_60_FPS} render={render}/>
             <Spacer />
         </Layout>
     )

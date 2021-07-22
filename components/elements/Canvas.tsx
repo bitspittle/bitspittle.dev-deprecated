@@ -1,8 +1,8 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {ColorMode} from "@chakra-ui/color-mode/dist/types/color-mode.utils";
-import {useColorMode} from "@chakra-ui/react";
+import {Box, BoxProps, useColorMode} from "@chakra-ui/react";
 
-export interface DrawArgs {
+export interface RenderArgs {
     /** The canvas context which provides drawing functionality */
     ctx: CanvasRenderingContext2D,
     /** The width of the canvas */
@@ -13,28 +13,71 @@ export interface DrawArgs {
     /** The current color mode of the site. */
     colorMode: ColorMode,
 
-    /** A function to call to request an additional frame be rendered. */
-    requestUpdate(): void
-
-     /** Time elapsed since last rendering started. */
-    elapsedMs: number,
+    /**
+     * Time elapsed since last frame.
+     *
+     * It could be useful to accumulate these locally at the drawing function, like:
+     *
+     * ```
+     * let state = {
+     *     elapsedMs: 0
+     * }
+     * function draw(args: DrawArgs): void {
+     *   state.elapsedMs += args.deltaMs
+     *   ...
+     * }
+     * ```
+     */
+    deltaMs: number,
 }
 
-interface CanvasProps {
-    width: number;
-    height: number;
-    draw: (args: DrawArgs) => void;
+interface CanvasProps extends BoxProps {
+    width: number,
+    height: number,
+    /**
+     * The render handler.
+     *
+     * Will be triggered as frequently as possible, unless
+     * {@link minDeltaMs} is set.
+     */
+    render: (args: RenderArgs) => void,
+
+    /**
+     * If set, ensures that draw won't be called more than once per
+     * this period.
+     *
+     * By default, this value isn't set, but {@link ONE_FRAME_MS_60_FPS} is probably a
+     * decent value.
+     */
+    minDeltaMs?: number,
+
+    /**
+     * If set, ensures that the delta passed into {@link RenderArgs} will be
+     * capped.
+     *
+     * This is useful to make sure that render behavior doesn't explode after
+     * sitting on a breakpoint for a while, and by default is set to half a
+     * second.
+     */
+    maxDeltaMs?: number,
 }
+
+export const ONE_FRAME_MS_60_FPS = 16
 
 const Canvas: React.FunctionComponent<CanvasProps> = (
     {
         width,
         height,
-        draw,
+        render,
+        minDeltaMs = null,
+        maxDeltaMs = ONE_FRAME_MS_60_FPS * 30,
+        ...props
     }) => {
     const ref = useRef<HTMLCanvasElement>(null);
-    const { colorMode } = useColorMode()
-    const [ initialTime ] = useState(Date.now())
+    const {colorMode} = useColorMode()
+    if (maxDeltaMs === null) {
+        maxDeltaMs = Number.MAX_VALUE
+    }
 
     useEffect(() => {
         if (ref.current) {
@@ -42,21 +85,24 @@ const Canvas: React.FunctionComponent<CanvasProps> = (
             const ctx = canvas.getContext('2d');
             if (ctx != null) {
                 let requestId: number;
+                let lastTimestamp = Date.now()
 
-                const render = () => {
-                    draw({
-                        ctx: ctx,
-                        elapsedMs: Date.now() - initialTime,
-                        width: width,
-                        height: height,
-                        colorMode: colorMode,
-                        requestUpdate: () => {
-                            requestId = requestAnimationFrame(render)
-                        }
-                    })
+                const renderCallback = () => {
+                    const now = Date.now()
+                    const deltaMs = now - lastTimestamp
+                    if (minDeltaMs == null || deltaMs >= minDeltaMs) {
+                        render({
+                            ctx: ctx,
+                            deltaMs: Math.min(deltaMs, maxDeltaMs),
+                            width: width,
+                            height: height,
+                            colorMode: colorMode,
+                        })
+                        lastTimestamp = now
+                    }
+                    requestId = requestAnimationFrame(renderCallback)
                 }
-
-                render()
+                renderCallback()
 
                 return () => {
                     cancelAnimationFrame(requestId)
@@ -65,7 +111,12 @@ const Canvas: React.FunctionComponent<CanvasProps> = (
         }
     });
 
-    return <canvas ref={ref} width={width} height={height}/>;
+    return (
+        <Box {...props}>
+            <canvas ref={ref} width={width} height={height}/>
+        </Box>
+    )
+
 };
 
 export default Canvas;
