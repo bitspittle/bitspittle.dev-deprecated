@@ -2,8 +2,10 @@ import {Flex, HStack, Spacer, StackProps} from "@chakra-ui/react";
 import {LightModeToggle} from "../widgets/LightModeToggle";
 import React from "react";
 import {Link} from "../elements/Link";
+import {useBrandColors} from "../../theme/colors";
 
 export const NavHeader: React.FunctionComponent<StackProps> = ({...props}) => {
+    const brandColors = useBrandColors()
     return (
         <Flex
             as="header"
@@ -12,7 +14,7 @@ export const NavHeader: React.FunctionComponent<StackProps> = ({...props}) => {
             {...props}
         >
             <HStack as="nav" spacing={4}>
-                <Link href="/">$bs</Link>
+                <Link color={brandColors.logo} transitionDuration="normal" transitionProperty="color" href="/">$bs</Link>
                 <Link href="/about">About</Link>
                 <Link href="/posts">Posts</Link>
             </HStack>

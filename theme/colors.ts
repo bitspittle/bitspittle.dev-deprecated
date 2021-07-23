@@ -3,11 +3,18 @@ import {ColorMode} from "@chakra-ui/color-mode/dist/types/color-mode.utils";
 import {transparentize} from "@chakra-ui/theme-tools/dist/types/color";
 
 export interface BrandColors {
+    /** Background color */
     bg: string,
+    /** Primary foreground color, e.g. text */
     fg: string,
+    /** Secondary foreground color, e.g. links */
+    accent: string,
+    /** Logo color */
+    logo: string,
+    /** Background color for code blocks */
     code: string,
-    border: string,
-    link: string,
+    /** Color for separators, e.g. borders */
+    separator: string,
 }
 
 interface BrandColorModes {
@@ -22,18 +29,20 @@ interface BrandColorSection {
 const brandColorSection: BrandColorSection = {
     brand: {
         light: {
-            bg: '#eeeeec',
-            fg: '#5faf5f',
+            bg: '#ffffff',
+            fg: '#333333',
+            accent: '#0c989a',
+            logo: '#5faf5f',
             code: '#00000011',
-            border: theme.colors.gray["700"],
-            link: '#0c989a'
+            separator: theme.colors.gray["700"],
         },
         dark: {
-            bg: '#300a24',
-            fg: '#01f901',
+            bg: '#2b2b2b',
+            fg: '#bbbbbb',
+            accent: '#07979a',
+            logo: '#01f901',
             code: '#ffffff33',
-            border: theme.colors.gray["400"],
-            link: '#07979a'
+            separator: theme.colors.gray["400"],
         }
     }
 }

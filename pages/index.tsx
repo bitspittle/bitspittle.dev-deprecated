@@ -73,8 +73,8 @@ function render(args: RenderArgs): void {
     // Write seconds
     ctx.save();
     ctx.rotate(sec * Math.PI / 30);
-    ctx.strokeStyle = getBrandColors(args.colorMode).link;
-    ctx.fillStyle = getBrandColors(args.colorMode).link;;
+    ctx.strokeStyle = getBrandColors(args.colorMode).accent;
+    ctx.fillStyle = getBrandColors(args.colorMode).accent;;
     ctx.lineWidth = 6;
     ctx.beginPath();
     ctx.moveTo(-30, 0);
@@ -93,7 +93,7 @@ function render(args: RenderArgs): void {
 
     ctx.beginPath();
     ctx.lineWidth = 14;
-    ctx.strokeStyle = getBrandColors(args.colorMode).link
+    ctx.strokeStyle = getBrandColors(args.colorMode).accent
     ctx.arc(0, 0, 142, 0, Math.PI * 2, true);
     ctx.stroke();
 

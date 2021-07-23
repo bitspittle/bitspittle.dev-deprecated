@@ -13,7 +13,7 @@ export const Footer: React.FunctionComponent<StackProps> = ({...props}) => {
                 padding="0.5em"
                 borderTopWidth="1px"
                 borderTopStyle="solid"
-                borderTopColor={getBrandColors(colorMode).border}
+                borderTopColor={getBrandColors(colorMode).separator}
                 transitionProperty="border-top-color"
                 transitionDuration="normal"
                 textAlign="center"

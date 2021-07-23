@@ -13,7 +13,7 @@ export const ThemedLink: React.FunctionComponent<ThemedLinkProps> = ({...props})
         <Link
             transitionProperty="color"
             transitionDuration="normal"
-            color={getBrandColors(colorMode).link}
+            color={getBrandColors(colorMode).accent}
             {...props}
         />
     )
