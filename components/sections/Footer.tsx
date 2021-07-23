@@ -1,21 +1,19 @@
-import {Text, StackProps, useColorMode, VStack, Box} from "@chakra-ui/react";
+import {Box, StackProps, Text, VStack} from "@chakra-ui/react";
 import React from "react";
-import {getBrandColors} from "../../theme/colors";
 import {ThemedLink as Link} from "../elements/ThemedLink";
 import {ThemedDivider} from "../elements/ThemedDivider";
 
 export const Footer: React.FunctionComponent<StackProps> = ({...props}) => {
-    const {colorMode} = useColorMode()
-
     return (
         <>
             <VStack
                 as="footer"
+                textAlign="center"
                 {...props}
             >
                 <Box height="1em" />
                 <ThemedDivider />
-                <Text>
+                <Text padding="0em 0em 0.5em 0em">
                     This site is <Link href="https://github.com/bitspittle/bitspittle.dev">Open Source</Link>.
                     It is built using{" "}
                     <Link href="https://nextjs.org/">Next.js</Link>,{" "}

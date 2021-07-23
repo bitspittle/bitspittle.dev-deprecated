@@ -47,7 +47,7 @@ const Layout: React.FunctionComponent<LayoutProps> =
                         direction="column"
                         minHeight="100vh"
                         minWidth="sm"
-                        width="3xl"
+                        width={{base: "sm", md: "3xl"}}
                         alignItems="stretch"
                     >
                         {!fullscreen && <NavHeader />}
