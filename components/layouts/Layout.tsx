@@ -55,9 +55,6 @@ const Layout: React.FunctionComponent<LayoutProps> =
                             as="main"
                             flexGrow={1}
                             padding="1rem 0"
-                            display="flex"
-                            flexDirection="column"
-                            alignItems="center"
                             {...props}
                         >
                             {children}

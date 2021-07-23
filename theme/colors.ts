@@ -1,4 +1,4 @@
-import {theme} from "@chakra-ui/react";
+import {theme, useColorMode} from "@chakra-ui/react";
 import {ColorMode} from "@chakra-ui/color-mode/dist/types/color-mode.utils";
 import {transparentize} from "@chakra-ui/theme-tools/dist/types/color";
 
@@ -40,6 +40,11 @@ const brandColorSection: BrandColorSection = {
 
 // Cast to any so the object can be dynamically added into the parent theme
 const colors: any = brandColorSection
+
+export function useBrandColors(): BrandColors {
+    const { colorMode } = useColorMode()
+    return getBrandColors(colorMode)
+}
 
 export function getBrandColors(colorMode: ColorMode): BrandColors {
     return colorMode==="light" ? colors.brand.light : colors.brand.dark

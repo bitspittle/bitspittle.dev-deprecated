@@ -104,6 +104,9 @@ export default function Home() {
     return (
         <Layout
             description="A developer blog with tutorials and experiences from the industry"
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
             textAlign="center"
         >
             <H1>
@@ -114,7 +117,7 @@ export default function Home() {
                 Developer tutorials, blog posts, and other garbage
             </H3>
             <Spacer />
-            <Canvas width={400} height={400} minDeltaMs={ONE_FRAME_MS_60_FPS} render={render}/>
+            <Canvas width={400} height={400} minDeltaMs={ONE_FRAME_MS_60_FPS * 5} render={render}/>
             <Spacer />
         </Layout>
     )
