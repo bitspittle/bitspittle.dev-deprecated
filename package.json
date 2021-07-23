@@ -14,6 +14,8 @@
     "@emotion/styled": "^11",
     "@fontsource/ubuntu": "^4.5.0",
     "@fontsource/ubuntu-mono": "^4.5.0",
+    "@mdx-js/loader": "^1.6.22",
+    "@next/mdx": "^11.0.1",
     "framer-motion": "^4",
     "next": "11.0.1",
     "npm": "^7.19.1",

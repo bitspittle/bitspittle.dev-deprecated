@@ -20,8 +20,11 @@ export const Footer: React.FunctionComponent<StackProps> = ({...props}) => {
                 {...props}
             >
                 This site is <Link href="https://github.com/bitspittle/bitspittle.dev">Open Source</Link>.
-                It is built using <Link href="https://nextjs.org/">Next.js</Link> and{' '}
-                <Link href="https://chakra-ui.com/">Chakra UI</Link>.
+                It is built using{" "}
+                <Link href="https://nextjs.org/">Next.js</Link>,{" "}
+                <Link href="https://chakra-ui.com/">Chakra UI</Link>, and{" "}
+                <Link href="https://mdxjs.com/">MDX</Link>.
+
             </Container>
         </>
 
