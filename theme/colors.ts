@@ -34,7 +34,7 @@ const brandColorSection: BrandColorSection = {
             accent: '#0c989a',
             logo: '#5faf5f',
             code: '#00000011',
-            separator: theme.colors.gray["700"],
+            separator: '#555555',
         },
         dark: {
             bg: '#2b2b2b',
@@ -42,7 +42,7 @@ const brandColorSection: BrandColorSection = {
             accent: '#07979a',
             logo: '#01f901',
             code: '#ffffff33',
-            separator: theme.colors.gray["400"],
+            separator: '#aaaaaa',
         }
     }
 }

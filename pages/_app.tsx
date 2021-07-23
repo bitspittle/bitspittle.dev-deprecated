@@ -11,6 +11,7 @@ import {ChakraProvider, Image, ListItem, OrderedList, Table, Tr, Td, Th, Tbody, 
 import {H1, H2, H3} from "../components/elements/Headings";
 import {ThemedCode} from "../components/elements/ThemedCode";
 import {ThemedLink} from "../components/elements/ThemedLink";
+import {ThemedDivider} from "../components/elements/ThemedDivider";
 import {P} from "../components/elements/P";
 
 const components = {
@@ -20,6 +21,7 @@ const components = {
     h3: H3,
     p: P,
     a: ThemedLink,
+    hr: ThemedDivider,
     ul: UnorderedList,
     ol: OrderedList,
     li: ListItem,
